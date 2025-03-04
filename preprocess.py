@@ -6,12 +6,21 @@ import numpy as np
 
 
 def read_data(path):
+	"""Read data to Muon object.
+
+	"""
 
 	mdata = mu.read_10x_h5(path)
 	return mdata
 
 
 def atac_qc_metrics(atac):
+	"""Calcualte QC metrics for ATAC data.
+
+	Rename columns 'n_genes_by_counts' -> 'n_features_per_cell' 
+	and 'total_counts' -> 'total_fragment_counts'
+
+	"""
 
 	sc.pp.calculate_qc_metrics(atac, percent_top=None, log1p=False, inplace=True)
 
